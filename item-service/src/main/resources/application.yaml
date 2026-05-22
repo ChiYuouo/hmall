@@ -1,8 +1,19 @@
 server:
   port: 8081
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp功能
+  sentinel:
+    enabled: true
 hm:
   db:
     database: hm-item
   swagger:
     title: “黑马商城商品服务服务接口文档"
     package: com.hmall.item.controller
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8090  #sentinel控制台地址
+      http-method-specify: true # 开启请求方式前缀

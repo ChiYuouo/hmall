@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Slf4j
-public class ItemClientFallbackFacotry implements FallbackFactory<ItemClient> {
+public class ItemClientFallbackFactory implements FallbackFactory<ItemClient> {
 
     @Override
     public ItemClient create(Throwable cause) {
