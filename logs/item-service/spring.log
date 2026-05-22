@@ -9955,3 +9955,133 @@ Caused by: java.net.ConnectException: Connection refused: no further information
 19:32:28:239  INFO 36548 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=item-service-dev.yaml, group=DEFAULT_GROUP
 19:32:28:239  INFO 36548 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=item-service.yaml, group=DEFAULT_GROUP
 19:32:28:239  INFO 36548 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=item-service, group=DEFAULT_GROUP
+19:42:22:980  INFO 36548 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:42:22:983  INFO 36548 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+19:42:22:992  INFO 36548 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+19:42:23:688 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? , ? )
+19:42:23:706 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 40305713537(Long), 100001511821(Long)
+19:42:23:744 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 2
+19:42:24:388 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? , ? )
+19:42:24:388 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 40305713537(Long), 100001511821(Long)
+19:42:24:390 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 2
+19:42:28:762 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? , ? )
+19:42:28:807 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 40305713537(Long), 100001511821(Long)
+19:42:28:812 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 2
+19:42:29:430 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.item.mapper.ItemMapper.updateStock   : ==>  Preparing: UPDATE item SET stock = stock - ? WHERE id = ?
+19:42:29:448 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 1(Integer), 40305713537(Long)
+19:42:29:448 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 1(Integer), 100001511821(Long)
+19:42:29:656  INFO 36548 --- [rpcDispatch_RMROLE_1_1_48] i.s.c.r.p.c.RmBranchCommitProcessor      : rm client handle branch commit process:xid=198.18.0.1:8099:4927720372573126657,branchId=4927720372573126666,branchType=AT,resourceId=jdbc:mysql://localhost:3306/hm-item,applicationData={"autoCommit":false}
+19:42:29:664  INFO 36548 --- [rpcDispatch_RMROLE_1_1_48] io.seata.rm.AbstractRMHandler            : Branch committing: 198.18.0.1:8099:4927720372573126657 4927720372573126666 jdbc:mysql://localhost:3306/hm-item {"autoCommit":false}
+19:42:29:666  INFO 36548 --- [rpcDispatch_RMROLE_1_1_48] io.seata.rm.AbstractRMHandler            : Branch commit result: PhaseTwo_Committed
+19:42:37:379 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : ==>  Preparing: SELECT COUNT(*) FROM item WHERE (status = ?)
+19:42:37:379 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : ==> Parameters: 1(Integer)
+19:42:37:405 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : <==      Total: 1
+19:42:37:412 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : ==>  Preparing: SELECT id, name, price, stock, image, category, brand, spec, sold, comment_count, isAD, status, create_time, update_time, creater, updater FROM item WHERE (status = ?) ORDER BY update_time DESC LIMIT ?
+19:42:37:412 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : ==> Parameters: 1(Integer), 20(Long)
+19:42:37:412 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : <==      Total: 20
+19:47:19:143 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:47:19:144 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:47:19:147 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:47:29:255 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:47:29:265 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:47:29:266 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:47:29:352 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.item.mapper.ItemMapper.updateStock   : ==>  Preparing: UPDATE item SET stock = stock - ? WHERE id = ?
+19:47:29:352 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 1(Integer), 100001511821(Long)
+19:47:29:645  INFO 36548 --- [rpcDispatch_RMROLE_1_2_48] i.s.c.r.p.c.RmBranchCommitProcessor      : rm client handle branch commit process:xid=198.18.0.1:8099:4927720372573126669,branchId=4927720372573126677,branchType=AT,resourceId=jdbc:mysql://localhost:3306/hm-item,applicationData={"autoCommit":false}
+19:47:29:645  INFO 36548 --- [rpcDispatch_RMROLE_1_2_48] io.seata.rm.AbstractRMHandler            : Branch committing: 198.18.0.1:8099:4927720372573126669 4927720372573126677 jdbc:mysql://localhost:3306/hm-item {"autoCommit":false}
+19:47:29:646  INFO 36548 --- [rpcDispatch_RMROLE_1_2_48] io.seata.rm.AbstractRMHandler            : Branch commit result: PhaseTwo_Committed
+19:48:11:113 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.m.ItemMapper.selectPage_mpCount    : ==>  Preparing: SELECT COUNT(*) FROM item WHERE (status = ?)
+19:48:11:113 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.m.ItemMapper.selectPage_mpCount    : ==> Parameters: 1(Integer)
+19:48:11:132 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.m.ItemMapper.selectPage_mpCount    : <==      Total: 1
+19:48:11:132 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.item.mapper.ItemMapper.selectPage    : ==>  Preparing: SELECT id, name, price, stock, image, category, brand, spec, sold, comment_count, isAD, status, create_time, update_time, creater, updater FROM item WHERE (status = ?) ORDER BY update_time DESC LIMIT ?
+19:48:11:132 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.item.mapper.ItemMapper.selectPage    : ==> Parameters: 1(Integer), 20(Long)
+19:48:11:132 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.item.mapper.ItemMapper.selectPage    : <==      Total: 20
+19:50:14:418 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:50:14:419 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:50:14:423 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:50:16:134  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of b499fec2-d80f-4223-a102-3d5dbeea1083_config-0
+19:50:16:153  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 10 ms to scan 1 urls, producing 3 keys and 6 values 
+19:50:16:166  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 7 ms to scan 1 urls, producing 4 keys and 9 values 
+19:50:16:172  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 4 ms to scan 1 urls, producing 3 keys and 10 values 
+19:50:16:173  WARN 31712 --- [main] org.reflections.Reflections              : given scan urls are empty. set urls in the configuration
+19:50:16:178  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 4 ms to scan 1 urls, producing 1 keys and 5 values 
+19:50:16:185  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 6 ms to scan 1 urls, producing 1 keys and 7 values 
+19:50:16:191  INFO 31712 --- [main] org.reflections.Reflections              : Reflections took 4 ms to scan 1 urls, producing 2 keys and 8 values 
+19:50:16:193  WARN 31712 --- [main] org.reflections.Reflections              : given scan urls are empty. set urls in the configuration
+19:50:16:193  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] RpcClient init label, labels = {module=config, Vipserver-Tag=null, source=sdk, Amory-Tag=null, Location-Tag=null, taskId=0, AppName=unknown}
+19:50:16:193  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda$458/0x000000084036f040
+19:50:16:193  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda$459/0x000000084036f440
+19:50:16:194  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+19:50:16:194  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+19:50:16:198  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+19:50:17:864  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1779450617714_127.0.0.1_11246
+19:50:17:865  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+19:50:17:864  INFO 31712 --- [com.alibaba.nacos.client.remote.worker] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Notify connected event to listeners.
+19:50:17:869  INFO 31712 --- [main] com.alibaba.nacos.common.remote.client   : [b499fec2-d80f-4223-a102-3d5dbeea1083_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda$473/0x00000008403d7440
+19:50:17:930  WARN 31712 --- [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[pay-service] & group[DEFAULT_GROUP]
+19:50:17:932  WARN 31712 --- [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[pay-service.yaml] & group[DEFAULT_GROUP]
+19:50:17:935  WARN 31712 --- [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[pay-service-dev.yaml] & group[DEFAULT_GROUP]
+19:50:17:935  INFO 31712 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-pay-service-dev.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-pay-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-pay-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-shared-seata.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-shared-swagger.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-shared-log.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-shared-jdbc.yaml,DEFAULT_GROUP'}]
+19:53:57:874 DEBUG 36548 --- [http-nio-8081-exec-2] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:53:57:884 DEBUG 36548 --- [http-nio-8081-exec-2] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:53:57:886 DEBUG 36548 --- [http-nio-8081-exec-2] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:53:57:999 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.item.mapper.ItemMapper.updateStock   : ==>  Preparing: UPDATE item SET stock = stock - ? WHERE id = ?
+19:53:58:000 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 1(Integer), 100001511821(Long)
+19:53:58:638  INFO 36548 --- [rpcDispatch_RMROLE_1_3_48] i.s.c.r.p.c.RmBranchCommitProcessor      : rm client handle branch commit process:xid=198.18.0.1:8099:4927720372573126680,branchId=4927720372573126689,branchType=AT,resourceId=jdbc:mysql://localhost:3306/hm-item,applicationData={"autoCommit":false}
+19:53:58:638  INFO 36548 --- [rpcDispatch_RMROLE_1_3_48] io.seata.rm.AbstractRMHandler            : Branch committing: 198.18.0.1:8099:4927720372573126680 4927720372573126689 jdbc:mysql://localhost:3306/hm-item {"autoCommit":false}
+19:53:58:638  INFO 36548 --- [rpcDispatch_RMROLE_1_3_48] io.seata.rm.AbstractRMHandler            : Branch commit result: PhaseTwo_Committed
+19:58:50:896 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.m.ItemMapper.selectPage_mpCount    : ==>  Preparing: SELECT COUNT(*) FROM item WHERE (status = ?)
+19:58:50:897 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.m.ItemMapper.selectPage_mpCount    : ==> Parameters: 1(Integer)
+19:58:50:907 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.m.ItemMapper.selectPage_mpCount    : <==      Total: 1
+19:58:50:911 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.item.mapper.ItemMapper.selectPage    : ==>  Preparing: SELECT id, name, price, stock, image, category, brand, spec, sold, comment_count, isAD, status, create_time, update_time, creater, updater FROM item WHERE (status = ?) ORDER BY update_time DESC LIMIT ?
+19:58:50:911 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.item.mapper.ItemMapper.selectPage    : ==> Parameters: 1(Integer), 20(Long)
+19:58:50:913 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.item.mapper.ItemMapper.selectPage    : <==      Total: 20
+19:58:52:875 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:58:52:875 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:58:52:877 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:58:55:707 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+19:58:55:708 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+19:58:55:709 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+19:58:55:806 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.item.mapper.ItemMapper.updateStock   : ==>  Preparing: UPDATE item SET stock = stock - ? WHERE id = ?
+19:58:55:807 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 1(Integer), 100001511821(Long)
+19:58:56:643  INFO 36548 --- [rpcDispatch_RMROLE_1_4_48] i.s.c.r.p.c.RmBranchCommitProcessor      : rm client handle branch commit process:xid=198.18.0.1:8099:4927720372573126692,branchId=4927720372573126701,branchType=AT,resourceId=jdbc:mysql://localhost:3306/hm-item,applicationData={"autoCommit":false}
+19:58:56:643  INFO 36548 --- [rpcDispatch_RMROLE_1_4_48] io.seata.rm.AbstractRMHandler            : Branch committing: 198.18.0.1:8099:4927720372573126692 4927720372573126701 jdbc:mysql://localhost:3306/hm-item {"autoCommit":false}
+19:58:56:643  INFO 36548 --- [rpcDispatch_RMROLE_1_4_48] io.seata.rm.AbstractRMHandler            : Branch commit result: PhaseTwo_Committed
+19:59:24:973 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : ==>  Preparing: SELECT COUNT(*) FROM item WHERE (status = ?)
+19:59:24:974 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : ==> Parameters: 1(Integer)
+19:59:24:983 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.m.ItemMapper.selectPage_mpCount    : <==      Total: 1
+19:59:24:989 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : ==>  Preparing: SELECT id, name, price, stock, image, category, brand, spec, sold, comment_count, isAD, status, create_time, update_time, creater, updater FROM item WHERE (status = ?) ORDER BY update_time DESC LIMIT ?
+19:59:24:989 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : ==> Parameters: 1(Integer), 20(Long)
+19:59:24:989 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.item.mapper.ItemMapper.selectPage    : <==      Total: 20
+20:03:28:502 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:28:502 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:28:505 DEBUG 36548 --- [http-nio-8081-exec-9] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:30:220 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:30:220 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:30:221 DEBUG 36548 --- [http-nio-8081-exec-10] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:30:829 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:30:829 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:30:829 DEBUG 36548 --- [http-nio-8081-exec-1] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:31:412 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:31:412 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:31:412 DEBUG 36548 --- [http-nio-8081-exec-3] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:31:967 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:31:967 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:31:967 DEBUG 36548 --- [http-nio-8081-exec-6] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:32:492 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:32:492 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:32:492 DEBUG 36548 --- [http-nio-8081-exec-5] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:33:064 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:33:064 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:33:064 DEBUG 36548 --- [http-nio-8081-exec-8] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:33:622 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:33:624 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:33:625 DEBUG 36548 --- [http-nio-8081-exec-7] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:41:376 DEBUG 36548 --- [http-nio-8081-exec-4] c.h.i.mapper.ItemMapper.selectBatchIds   : ==>  Preparing: SELECT id,name,price,stock,image,category,brand,spec,sold,comment_count,isAD,status,create_time,update_time,creater,updater FROM item WHERE id IN ( ? )
+20:03:41:377 DEBUG 36548 --- [http-nio-8081-exec-4] c.h.i.mapper.ItemMapper.selectBatchIds   : ==> Parameters: 100001511821(Long)
+20:03:41:378 DEBUG 36548 --- [http-nio-8081-exec-4] c.h.i.mapper.ItemMapper.selectBatchIds   : <==      Total: 1
+20:03:41:473 DEBUG 36548 --- [http-nio-8081-exec-2] c.h.item.mapper.ItemMapper.updateStock   : ==>  Preparing: UPDATE item SET stock = stock - ? WHERE id = ?
+20:03:41:473 DEBUG 36548 --- [http-nio-8081-exec-2] c.h.item.mapper.ItemMapper.updateStock   : ==> Parameters: 4(Integer), 100001511821(Long)
+20:03:41:646  INFO 36548 --- [rpcDispatch_RMROLE_1_5_48] i.s.c.r.p.c.RmBranchCommitProcessor      : rm client handle branch commit process:xid=198.18.0.1:8099:4927720372573126715,branchId=4927720372573126723,branchType=AT,resourceId=jdbc:mysql://localhost:3306/hm-item,applicationData={"autoCommit":false}
+20:03:41:646  INFO 36548 --- [rpcDispatch_RMROLE_1_5_48] io.seata.rm.AbstractRMHandler            : Branch committing: 198.18.0.1:8099:4927720372573126715 4927720372573126723 jdbc:mysql://localhost:3306/hm-item {"autoCommit":false}
+20:03:41:646  INFO 36548 --- [rpcDispatch_RMROLE_1_5_48] io.seata.rm.AbstractRMHandler            : Branch commit result: PhaseTwo_Committed
