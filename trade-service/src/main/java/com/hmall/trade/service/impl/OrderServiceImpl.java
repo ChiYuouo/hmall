@@ -16,6 +16,7 @@ import com.hmall.trade.service.IOrderDetailService;
 import com.hmall.trade.service.IOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
    // private final ICartService cartService;
     private final CartClient cartClient;
     private final ItemClient itemClient;
+    private final RabbitTemplate rabbitTemplate;
 
     @Override
     @GlobalTransactional
@@ -78,7 +80,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         detailService.saveBatch(details);
 
         // 3.清理购物车商品
-        cartClient.deleteCartItemByIds(itemIds);
+        //cartClient.deleteCartItemByIds(itemIds);
+        rabbitTemplate.convertAndSend("trade.topic","order.create",itemIds);
 
         // 4.扣减库存
         try {

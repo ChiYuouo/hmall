@@ -16,7 +16,7 @@ public class PayStatusListener {
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(name = "trade.pay.success.queue",durable = "true"),
-            exchange = @Exchange(name = "pay.direct"),
+            exchange = @Exchange(name = "pay.direct",type = "direct"),
             key = "pay.success"
     ))
     public void listenPaySuccess(Long orderId){
