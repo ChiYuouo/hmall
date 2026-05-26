@@ -17,3 +17,9 @@ spring:
       transport:
         dashboard: localhost:8090  #sentinel控制台地址
       http-method-specify: true # 开启请求方式前缀
+  rabbitmq:
+    host: 157.245.206.115
+    port: 5672
+    virtual-host: /hmall
+    username: hmall
+    password: 123
