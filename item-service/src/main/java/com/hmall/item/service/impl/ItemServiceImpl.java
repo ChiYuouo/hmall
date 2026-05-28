@@ -40,6 +40,21 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements II
     }
 
     @Override
+    @Transactional
+    public void addStock(List<OrderDetailDTO> items) {
+        String sqlStatement = "com.hmall.item.mapper.ItemMapper.addStock";
+        boolean r = false;
+        try {
+            r = executeBatch(items, (sqlSession, entity) -> sqlSession.update(sqlStatement, entity));
+        }  catch (Exception e) {
+            throw new BizIllegalException("恢复库存异常！", e);
+        }
+        if (!r) {
+            throw new BizIllegalException("恢复库存失败！");
+        }
+    }
+
+    @Override
     public List<ItemDTO> queryItemByIds(Collection<Long> ids) {
         return BeanUtils.copyList(listByIds(ids), ItemDTO.class);
     }

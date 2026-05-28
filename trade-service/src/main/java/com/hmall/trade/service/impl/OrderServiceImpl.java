@@ -8,6 +8,7 @@ import com.hmall.api.dto.OrderDetailDTO;
 import com.hmall.common.exception.BadRequestException;
 import com.hmall.common.utils.UserContext;
 
+import com.hmall.trade.constant.MQConstant;
 import com.hmall.trade.domain.dto.OrderFormDTO;
 import com.hmall.trade.domain.po.Order;
 import com.hmall.trade.domain.po.OrderDetail;
@@ -16,15 +17,16 @@ import com.hmall.trade.service.IOrderDetailService;
 import com.hmall.trade.service.IOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.RequiredArgsConstructor;
+import org.antlr.v4.runtime.atn.SemanticContext;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -89,6 +91,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         } catch (Exception e) {
             throw new RuntimeException("库存不足！");
         }
+
+        //5.发送延迟消息，检测订单支付状态
+        rabbitTemplate.convertAndSend(MQConstant.DELAY_EXCHANGE_NAME, MQConstant.DELAY_ORDER_KEY, order.getId(), new MessagePostProcessor() {
+            @Override
+            public Message postProcessMessage(Message message) throws AmqpException {
+                message.getMessageProperties().setDelay(MQConstant.ORDER_DELAY_TIME);
+                return message;
+            }
+        });
         return order.getId();
     }
 
@@ -99,6 +110,40 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setStatus(2);
         order.setPayTime(LocalDateTime.now());
         updateById(order);
+    }
+
+    @Override
+    @Transactional
+    public void cancelOrder(Long orderId) {
+        // 标记订单为已关闭
+        Order order=new Order();
+        order.setStatus(5);
+        order.setId(orderId);
+        order.setCloseTime(LocalDateTime.now());
+        updateById(order);
+
+        //恢复库存
+        // 查询订单明细，一个订单可能有多个商品
+        List<OrderDetail> details = detailService.lambdaQuery()
+                .eq(OrderDetail::getOrderId, orderId)
+                .list();
+
+        if (details == null || details.isEmpty()) {
+            return;
+        }
+
+        // 转成商品服务需要的 DTO
+        List<OrderDetailDTO> items = details.stream()
+                .map(detail -> {
+                    OrderDetailDTO dto = new OrderDetailDTO();
+                    dto.setItemId(detail.getItemId());
+                    dto.setNum(detail.getNum());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        // 批量恢复库存
+        itemClient.addStock(items);
     }
 
     private List<OrderDetail> buildDetails(Long orderId, List<ItemDTO> items, Map<Long, Integer> numMap) {
