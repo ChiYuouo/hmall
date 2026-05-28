@@ -6,6 +6,7 @@ import com.hmall.api.client.ItemClient;
 import com.hmall.api.dto.ItemDTO;
 import com.hmall.api.dto.OrderDetailDTO;
 import com.hmall.common.exception.BadRequestException;
+import com.hmall.common.utils.RabbitMqHelper;
 import com.hmall.common.utils.UserContext;
 
 import com.hmall.trade.constant.MQConstant;
@@ -47,6 +48,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final CartClient cartClient;
     private final ItemClient itemClient;
     private final RabbitTemplate rabbitTemplate;
+    private final RabbitMqHelper rabbitMqHelper;
 
     @Override
     @GlobalTransactional
@@ -83,7 +85,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         // 3.清理购物车商品
         //cartClient.deleteCartItemByIds(itemIds);
-        rabbitTemplate.convertAndSend("trade.topic","order.create",itemIds);
+        rabbitMqHelper.sendMessage("trade.topic","order.create",itemIds);
 
         // 4.扣减库存
         try {
@@ -93,13 +95,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         }
 
         //5.发送延迟消息，检测订单支付状态
-        rabbitTemplate.convertAndSend(MQConstant.DELAY_EXCHANGE_NAME, MQConstant.DELAY_ORDER_KEY, order.getId(), new MessagePostProcessor() {
-            @Override
-            public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setDelay(MQConstant.ORDER_DELAY_TIME);
-                return message;
-            }
-        });
+        rabbitMqHelper.sendDelayMessage(MQConstant.DELAY_EXCHANGE_NAME, MQConstant.DELAY_ORDER_KEY, order.getId(),MQConstant.ORDER_DELAY_TIME);
         return order.getId();
     }
 
